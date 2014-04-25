@@ -1,0 +1,16 @@
+<html>
+<head>
+  <title>Java Applet Connection DB</title>
+</head>
+<body>
+<applet id="mysql-connection" code="MySQL.class" codebase="./" archive="mysql-connector-java-5.1.26-bin.jar" name="mine" width="100" height="100" ></applet>
+<div id="sqlOutput"></div>
+<SCRIPT src="jquery.js"></SCRIPT>
+<SCRIPT src="wrapper.js"></SCRIPT>
+<SCRIPT type="text/javascript">
+var db = new SocialSqlDb();
+db.runSqlThread("192.168.196.139","wpdb","remote_ly","198925wahaha","SELECT * FROM wp_terms", "display");
+db.runSqlThread("localhost","wpdb","ly","198925wahaha","SELECT * FROM wp_terms", "display");
+</SCRIPT>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<html>
+<head>
+  <title>Java Applet Connection DB</title>
+</head>
+<body>
+
+
+<table id = "sql-result">
+<tbody>
+<tr></tr>
+</tbody>
+</table>
+
+<applet id="mysql-connection" code="MySQL.class" codebase="./" archive="mysql-connector-java-5.1.26-bin.jar" name="mine" width="100" height="100" ></applet>
+<ul id="sqloutput"></ul>
+<SCRIPT src="wrapper.js"></SCRIPT>
+<SCRIPT type="text/javascript">
+var sqlEl = document.getElementById('sqloutput');
+   
+
+var db = connectDatabase("localhost","3306","wpdb","ly","198925wahaha");
+var result = db.executeSqlArray("SELECT * FROM wp_users");
+console.log(result);
+db.close();
+//var obj = JSON.parse(result[1]);
+
+var rows = "";
+document.write("<table>");
+//テーブルとして表示するため、htmlを構築
+for (i = 0; i < result.length; i++) {	
+	rows += "<tr>";
+  for (j = 0; j < result[i].length; j++) {
+		rows += "<td>";
+		rows += result[i][j];
+		rows += "</td>";
+  }
+	rows += "</tr>";
+}			
+document.write(rows);
+document.write("</table>");
+
+
+function JsonParseReviver(key,value){
+// 出力テスト
+console.log("key:" + key + " value:" + value);
+// 変換したい値を返す（ここでは本来の値をそのまま返している）
+return value;
+}
+
+</SCRIPT>
+</body>
+</html>
